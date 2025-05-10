@@ -93,7 +93,56 @@ void SelectSort(int* arr, int n)
 		end--;
 	}
 }
+void QuickSort(int* arr, int begin, int end)
+{
+	if (begin >= end)//防止只有一个数字或不存在
+		return;
+	int left = begin;
+	int right = end;
+	int keyi = begin;
+	while (begin < end)
+	{
+		while (arr[end] >= arr[keyi] && end > begin)
+		{
+			end--;
+		}
+		while (arr[begin] <= arr[keyi] && end > begin)
+		{
+			begin++;
+		}
+		swap(&arr[begin], &arr[end]);
+	}
+	swap(&arr[keyi], &arr[begin]);
+	keyi = begin;
+	QuickSort(arr, left, keyi - 1);
+	QuickSort(arr, keyi + 1, right);//递归了
+}
+
 void AdjustDown(int* arr, int n, int root)
 {
-
+	int parent = root;
+	int child = parent * 2 + 1;//左孩子
+	while (child < n)
+	{
+		if (child + 1 < n && arr[child] > arr[child + 1])child + 1;//移至右孩子
+		if (arr[child] > arr[parent])
+		{
+			swap(&arr[child], &arr[parent]);
+			parent = child;
+			child = parent * 2 + 1;
+		}
+		else break;
+	}
+}
+void HeapSort(int* arr, int n)
+{
+	for (int i = (n - 1 - 1) / 2;i >= 0;i--)//建大堆
+	{
+		AdjustDown(arr, n, i);
+	}
+	for (int i = n;i > 1;i--)
+	{
+		swap(&arr[0], &arr[i - 1]);
+		AdjustDown(arr, i - 1, 0);
+	}
 }

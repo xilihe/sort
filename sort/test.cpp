@@ -9,14 +9,17 @@ int main()
 	{
 		scanf("%d", &a[i]);
 	}
+	int end = n, begin = 0;
 	for (int i = 0;i < n;i++)
 	{
 	printf("%d ", a[i]);
 	}printf("\n ");
-	SelectSort(a, n);
+	//SelectSort(a, n);
 	//InsertSort(a, n);
 	//ShellSort(a, n);
 	//BubbleSort(a, n);
+	//QuickSort(a, begin,end);
+	HeapSort(a, n);
 	for (int i = 0;i < n;i++)
 	{
 		printf("%d ", a[i]);
